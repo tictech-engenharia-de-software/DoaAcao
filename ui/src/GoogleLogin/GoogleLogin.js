@@ -4,6 +4,7 @@ import { compose } from 'redux';
 import { firebaseConnect } from 'react-redux-firebase'
 import Button from '@material-ui/core/Button';
 import styled from 'styled-components';
+import GoogleButton from 'react-google-button';
 
 const loginSettings = {
 		provider:'google',
@@ -11,9 +12,7 @@ const loginSettings = {
 	}
 
 const GoogleLogin = ({firebase}) => (
-	<Button onClick={ () => firebase.login(loginSettings)}>
-		LOGIN WITH GOOGLE
-	</Button>
+	<GoogleButton onClick={ () => firebase.login(loginSettings)} />
 );
 
 export default compose(
