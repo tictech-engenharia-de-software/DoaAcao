@@ -15,7 +15,9 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig)
 
-const config = {}
+const config = {
+ userProfile: 'users',
+}
 
 const createStoreWithFirebase = composeWithDevTools(
   reactReduxFirebase(firebase, config)
