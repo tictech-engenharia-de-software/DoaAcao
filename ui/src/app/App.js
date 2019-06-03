@@ -102,16 +102,16 @@ const App = (props) =>
   
       state = {cards: [
         {
-          logo: images["sth_foto"], 
+          logo: images["sth"], 
           title: "Somos todos Heróis", 
-          foto: images["sth_foto"], 
+          image: images["sth_foto"], 
           description: "Desenvolva crianças dando aula de skate!"
         },
   
         {
-          logo: images["sth_foto"], 
+          logo: images["sth"], 
           title: "Somos todos Heróis", 
-          foto: images["sth_foto"], 
+          image: images["sth_foto"], 
           description: "Desenvolva crianças dando aula de skate!"
         },
         ]
@@ -127,7 +127,6 @@ const App = (props) =>
         return (
         <Swipeable onAfterSwipe={this.remove}>
           <EventCard
-          key={} 
             title = {title} 
             logo = {logo}
             description = {description}
