@@ -61,6 +61,14 @@ const App = (props) =>
       display:flex;
       flex-direction:column;
   `;
+
+  const NoBorderCard = styled.div`
+  background-color:#FFF;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+`;
+
   
   const CardTitle = styled.div`
     display:flex;
@@ -79,6 +87,23 @@ const App = (props) =>
   const CardDescription = styled.div`
     padding:100px;
   `;
+
+    const EmptyCard = () => (
+      <NoBorderCard>
+        
+        <div>
+        <img height="400px" src = {images["empty"]}/>
+
+        </div>
+
+        <CardDescription>
+          <h2>
+            Não há mais nenhum card :(
+
+          </h2>
+        </CardDescription>
+      </NoBorderCard>
+    )
   
     const EventCard = ({title, logo, description, image}) => (
         <Card>
@@ -123,17 +148,26 @@ const App = (props) =>
       }));
   
       render (){
-        const {title, logo, description, image} = this.state.cards[0];
-        return (
-        <Swipeable onAfterSwipe={this.remove}>
-          <EventCard
-            title = {title} 
-            logo = {logo}
-            description = {description}
-            image = {image}
-            />
-          </Swipeable>
-          );
+
+        if(this.state.cards.length > 0)
+        {
+
+          const {title, logo, description, image} = this.state.cards[0];
+          return (
+          <Swipeable onAfterSwipe={this.remove}>
+            <EventCard
+              title = {title} 
+              logo = {logo}
+              description = {description}
+              image = {image}
+              />
+            </Swipeable>
+            );
+        }
+        else
+        {
+          return (<EmptyCard/>);
+        }
           
       }
     }
