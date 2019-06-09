@@ -7,7 +7,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Paper from '@material-ui/core/Paper';
 import Linka from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -26,12 +25,7 @@ import logo from '/../logo.png';
     marginTop: theme.spacing(8),
     display: 'flex',
     flexDirection: 'column',
-	alignItems: 'center',
-  },
-  paper2: {
-	padding: theme.spacing(2),
-	textAlign: 'center',
-	color: theme.palette.text.secondary,
+    alignItems: 'center',
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -54,7 +48,39 @@ export default function Login() {
           Sign in
         </Typography>
         <form className={classes.form} noValidate>
-        <Button>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email Address"
+            name="email"
+            autoComplete="email"
+            autoFocus
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+          />
+          <FormControlLabel
+            control={<Checkbox value="remember" color="primary" />}
+            label="Remember me"
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
             Sign In
           </Button>
           <Grid container>
@@ -64,29 +90,12 @@ export default function Login() {
               </Linka>
             </Grid>
             <Grid item>
-
-			
               <Linka href="#" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Linka>
-			
             </Grid>
           </Grid>
-		  <Grid item xs={6}>
-          	<Paper className={classes.paper2}>
-			  <Link to='/events/' >
-			<FacebookLogin />
-			</Link>
-			  </Paper>
-        	</Grid>
-          <Grid item xs={6}>
-          	<Paper className={classes.paper2}>
-			  
-			<Link to='/events/'>
-			<GoogleLogin />
-			</Link>
-			  </Paper>
-           </Grid>
+
 
         </form>
 
@@ -96,12 +105,3 @@ export default function Login() {
     </Container>
   );
 }
-
-/*const Login = () => (
-	<div>
-		
-	</div>
-);
-
-export default Login;
-*/
