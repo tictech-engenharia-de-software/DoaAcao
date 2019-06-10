@@ -31,7 +31,7 @@ import { sizing } from '@material-ui/system';
 	alignItems: 'center',
   },
   logins: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(7),
     textAlign: 'center',
     color: theme.palette.text.secondary,
     alignContent: 'center',
@@ -62,21 +62,19 @@ export default function Login() {
           Sign in
         </Typography>
         <form className={classes.form} noValidate>
-          <Grid container className={classes.logins}>
-            <Grid item xs>
+        <div style={{ padding: 20 }}> 
+          <Grid container className={classes.logins} container spacing={0}>
+            <Grid item container >
               <Link to='/events/' >
-                <Box width={300}>
-                  <FacebookLogin />
-                </Box>
+                <FacebookLogin />
               </Link>
-              <br /><br />
+              <br /><br /> <br />
               <Link to='/events/' >
-                <Box width={900}>
-                  <GoogleLogin />
-                </Box>
+                <GoogleLogin />
                </Link>
               </Grid>
             </Grid>
+            </div>
       </form>
 
       </div>
