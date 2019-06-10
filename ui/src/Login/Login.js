@@ -15,6 +15,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import logo from '/../logo.png';
+import { sizing } from '@material-ui/system';
+
 
   const useStyles = makeStyles(theme => ({
   '@global': {
@@ -28,10 +30,16 @@ import logo from '/../logo.png';
     flexDirection: 'column',
 	alignItems: 'center',
   },
-  paper2: {
-	padding: theme.spacing(2),
-	textAlign: 'center',
-	color: theme.palette.text.secondary,
+  logins: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    alignContent: 'center',
+    alignItems: 'center',
+    justify: 'center',
+  },
+  google: {
+    alignContent: 'center',
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -54,45 +62,24 @@ export default function Login() {
           Sign in
         </Typography>
         <form className={classes.form} noValidate>
-        <Button>
-            Sign In
-          </Button>
-          <Grid container>
+          <Grid container className={classes.logins}>
             <Grid item xs>
-              <Linka href="#" variant="body2">
-                Forgot password?
-              </Linka>
+              <Link to='/events/' >
+                <Box width={300}>
+                  <FacebookLogin />
+                </Box>
+              </Link>
+              <br /><br />
+              <Link to='/events/' >
+                <Box width={900}>
+                  <GoogleLogin />
+                </Box>
+               </Link>
+              </Grid>
             </Grid>
-            <Grid item>
-
-			
-              <Linka href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Linka>
-			
-            </Grid>
-          </Grid>
-		  <Grid item xs={6}>
-          	<Paper className={classes.paper2}>
-			  <Link to='/events/' >
-			<FacebookLogin />
-			</Link>
-			  </Paper>
-        	</Grid>
-          <Grid item xs={6}>
-          	<Paper className={classes.paper2}>
-			  
-			<Link to='/events/'>
-			<GoogleLogin />
-			</Link>
-			  </Paper>
-           </Grid>
-
-        </form>
+      </form>
 
       </div>
-      <Box mt={5}>
-      </Box>
     </Container>
   );
 }
