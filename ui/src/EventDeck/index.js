@@ -121,9 +121,9 @@ const Container = styled.div`
         },
   
         {
-          logo: images["sth"], 
-          title: "Somos todos Heróis", 
-          image: images["sth_foto"], 
+          logo: images["formiga_verde"], 
+          title: "Formiga Verde", 
+          image: images["formiga_verde_foto"], 
           description: "Desenvolva crianças dando aula de skate!"
         },
         ]
@@ -174,7 +174,6 @@ const Container = styled.div`
             <ButtonsContainer>
               <Button size="50" color="#a8a8a8"><i className="fa fa-times fa-2x"/></Button>
               <Button size="40" color="#ff0500"><i className="fa fa-heart fa-2x"/></Button>
-  
             </ButtonsContainer>
             
         </Content>
