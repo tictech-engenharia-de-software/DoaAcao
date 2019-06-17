@@ -36,7 +36,15 @@ import logo from '/../logo.png';
   },
 }));
 
-export default function Login() {
+let loginCheck = () => {
+  let email = document.getElementsByClassName("email").value
+  let password = document.getElementsByClassName("password").value
+  console.log(email);
+  console.log(password);
+  email == "doaacao" && password == "1234" ?  true : false
+}
+
+let InstitutionLogin = () => {
   const classes = useStyles();
 
   return (
@@ -45,10 +53,11 @@ export default function Login() {
       <div className={classes.paper}>
 		  <img src= { logo } alt="logo" />
         <Typography component="h1" variant="h5">
-          Sign in
+          Encontre voluntários!
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
+            className="email"
             variant="outlined"
             margin="normal"
             required
@@ -60,6 +69,7 @@ export default function Login() {
             autoFocus
           />
           <TextField
+            className="password"
             variant="outlined"
             margin="normal"
             required
@@ -74,29 +84,16 @@ export default function Login() {
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign In
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              <Linka href="#" variant="body2">
-                Forgot password?
-              </Linka>
-            </Grid>
-            <Grid item>
-              <Linka href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Linka>
-            </Grid>
-          </Grid>
-
-
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              href= { loginCheck ? "events" : "#"}
+            >
+              Sign In
+            </Button>
         </form>
 
       </div>
@@ -105,3 +102,5 @@ export default function Login() {
     </Container>
   );
 }
+
+export default InstitutionLogin;
