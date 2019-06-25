@@ -4,12 +4,11 @@ import { Link } from 'react-router-dom';
 import FacebookLogin from '/FacebookLogin';
 import GoogleLogin from '/GoogleLogin';
 import Button from '@material-ui/core/Button';
-import logo from '/../logo.png';
+import Logo from '/Logo';
 import { UserIsNotAuthenticated } from '/HOC';
 
 const StyledLink = styled(Link)`
     text-decoration: none;
-
     &:focus, &:hover, &:visited, &:link, &:active {
         text-decoration: none;
     }
@@ -37,7 +36,7 @@ align-items:center;
 
 const Login = () => (
   <PageContainer>
-    <img src={logo}/>
+    <Logo/>
     <StyledLink to='/events/' >
       <FacebookLogin />
     </StyledLink>

@@ -2,14 +2,14 @@ import React from 'react';
 import locationHelperBuilder from 'redux-auth-wrapper/history4/locationHelper';
 import { connectedRouterRedirect } from 'redux-auth-wrapper/history4/redirect'
 import { createBrowserHistory } from 'history';
+import LoadingPage from '/LoadingPage';
 
 const locationHelper = locationHelperBuilder({});
 const history = createBrowserHistory()
 
-const Loading = () => <div>Loading</div>
 export const UserIsAuthenticated = connectedRouterRedirect({
   wrapperDisplayName: 'UserIsAuthenticated',
-  AuthenticatingComponent: Loading,
+  AuthenticatingComponent: LoadingPage,
   allowRedirectBack: true,
   redirectPath: (state, ownProps) =>
     locationHelper.getRedirectQueryParam(ownProps) || '/',
@@ -25,7 +25,7 @@ export const UserIsAuthenticated = connectedRouterRedirect({
 
 export const UserIsNotAuthenticated = connectedRouterRedirect({
   wrapperDisplayName: 'UserIsNotAuthenticated',
-  AuthenticatingComponent: Loading,
+  AuthenticatingComponent: LoadingPage,
   allowRedirectBack: false,
   redirectPath: (state, ownProps) =>
     locationHelper.getRedirectQueryParam(ownProps) || '/events',

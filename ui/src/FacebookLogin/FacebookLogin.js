@@ -30,7 +30,7 @@ const FacebookButton = styled(Button)`
 
 const loginSettings = {
 	provider: 'facebook',
-	type: 'popup',
+	type: 'redirect',
 }
 
 const FacebookLogin = ({firebase}) => (

@@ -9,10 +9,9 @@ import App from '/App'
 render(
 	<Provider store={store}>
 		<React.Fragment>
-		<CssBaseline/>
-		<App/>
+			<CssBaseline/>
+			<App/>
 		</React.Fragment>
-	</Provider>
-	,
+	</Provider>,
 	document.getElementById("root"),
 );
