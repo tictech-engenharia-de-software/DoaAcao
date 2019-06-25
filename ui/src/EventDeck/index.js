@@ -3,6 +3,7 @@ import images from "../resources/images/*.jpg";
 import Swipeable from "react-swipy";
 import styled from "styled-components";
 import 'font-awesome/css/font-awesome.min.css';
+import { UserIsAuthenticated } from '/HOC';
 
 
 const Container = styled.div`
@@ -181,4 +182,4 @@ const Container = styled.div`
     )
   }
   
-  export default EventDeck;
+  export default UserIsAuthenticated(EventDeck);

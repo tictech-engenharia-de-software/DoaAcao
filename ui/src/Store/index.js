@@ -4,14 +4,15 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { firebaseReducer } from 'react-redux-firebase'
 import firebase from 'firebase'
 
-const rootReducer = combineReducers({
-  firebase: firebaseReducer
-})
 const firebaseConfig = {
   apiKey: process.env.APIKEY,
   authDomain: process.env.AUTHDOMAIN,
   databaseURL: process.env.DATABASEURL,
 }
+
+const rootReducer = combineReducers({
+  firebase: firebaseReducer
+})
 
 firebase.initializeApp(firebaseConfig)
 
