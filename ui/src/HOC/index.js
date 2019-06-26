@@ -38,3 +38,36 @@ export const UserIsNotAuthenticated = connectedRouterRedirect({
     dispatch({ type: 'UNAUTHED_REDIRECT' });
   },
 });
+
+export const InstitutionNotAuthenticated = connectedRouterRedirect({
+  wrapperDisplayName: 'InstitutionNotAuthenticated',
+  AuthenticatingComponent: LoadingPage,
+  allowRedirectBack: false,
+  redirectPath: (state, ownProps) =>
+    locationHelper.getRedirectQueryParam(ownProps) || '/manage-events',
+  authenticatingSelector: ({ firebase: { auth, isInitializing } }) =>
+    !auth.isLoaded || isInitializing === true,
+  authenticatedSelector: ({ firebase: { auth } }) =>
+    auth.isLoaded && auth.isEmpty,
+  redirectAction: newLoc => (dispatch) => {
+    browserHistory.replace(newLoc); // or routerActions.replace
+    dispatch({ type: 'UNAUTHED_REDIRECT' });
+  },
+});
+
+export const InstitutionAuthenticated = connectedRouterRedirect({
+  wrapperDisplayName: 'UserIsAuthenticated',
+  AuthenticatingComponent: LoadingPage,
+  allowRedirectBack: true,
+  redirectPath: (state, ownProps) =>
+    locationHelper.getRedirectQueryParam(ownProps) || '/institution-login',
+  authenticatingSelector: ({ firebase: { auth, profile, isInitializing } }) =>
+    !auth.isLoaded || isInitializing === true,
+  authenticatedSelector: ({ firebase: { auth } }) =>
+    auth.isLoaded && !auth.isEmpty,
+  redirectAction: newLoc => (dispatch) => {
+    browserHistory.replace(newLoc); // or routerActions.replace
+    dispatch({ type: 'UNAUTHED_REDIRECT' });
+  },
+});
+

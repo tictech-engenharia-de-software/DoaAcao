@@ -21,7 +21,7 @@ const EventPage = () => {
 				<EventDeck/>
 			</Container>
 		</PageContainer>
-)
+	)
 }
 
 export default UserIsAuthenticated(EventPage);
