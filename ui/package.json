@@ -41,6 +41,7 @@
     "font-awesome": "^4.7.0",
     "history": "^4.9.0",
     "react": "^16.8.6",
+    "react-chat-widget": "^2.1.4-1",
     "react-dom": "^16.8.6",
     "react-facebook-login": "^4.1.1",
     "react-firebase-file-uploader": "^2.4.2",
