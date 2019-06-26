@@ -43,6 +43,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-facebook-login": "^4.1.1",
+    "react-firebase-file-uploader": "^2.4.2",
     "react-google-button": "^0.5.3",
     "react-redux": "^5.0.7",
     "react-redux-firebase": "^2.1.9",
