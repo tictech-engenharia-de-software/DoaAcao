@@ -34,15 +34,34 @@ const ReceiverMessage = styled.div`
 	margin-top:12px;
 `
 
+const Container = styled.div`
+display:flex;
+flex-direction:column;
+align-items:;
+`
+
 
 const ChatWindow = ({chat, user}) => (
 	<ChatMessages>
 	{
 		chat && chat.messages? 				
 			messageToArray(chat.messages || {}).map(
-				({message, senderId, key}) =>	user === senderId? 
-				(<SenderMessage key={key}><SenderChip size="medium" label={message} /></SenderMessage>) 
-				: (<ReceiverMessage key={key}><Chip size="medium" label={message}/></ReceiverMessage>)
+				({message, senderId,timestamp, key}) =>	user === senderId? 
+				(<SenderMessage key={key}>
+					<SenderChip size="medium" label={message} />
+					<Typography variant='caption'>
+						{	timestamp?new Date(timestamp).toLocaleTimeString('pt-BR'):''}
+					</Typography>
+				</SenderMessage>) 
+				: (<ReceiverMessage 
+					key={key}>
+					<Container>
+						<Chip size="medium" label={message}/>
+					<Typography variant='overline'>
+							{	timestamp?new Date(timestamp).toLocaleTimeString('pt-BR'):''}
+						</Typography>
+					</Container>
+				</ReceiverMessage>)
 			):<div/>
 
 	}

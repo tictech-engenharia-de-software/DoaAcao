@@ -7,7 +7,7 @@ import { firebaseConnect } from 'react-redux-firebase';
 
 import LoadingPage from '/LoadingPage';
 import Topbar from './Topbar';
-import ChatWindow from './ChatWindow';
+import ChatWindow from '/ChatWindow';
 import InputText from './InputText';
 
 
@@ -18,24 +18,24 @@ const ChatPage = styled.div`
 	height:100%
 `
 
-const Chat = ({chats, auth,firebase,requesting, match, institution}) => {
+const Chat = ({chats, auth,firebase,requesting, match, users, institution}) => {
   const {chatId} = match.params
 
   const firebaseSend = (message) => firebase.push(`chats/${chatId}/messages`,{
     senderId:auth.uid,
-    sender:auth.displayName,
+    sender:institution[auth.uid].displayName,
     timestamp:new Date().getTime(),
     message,
   })
 
-  const loadingData = requesting.institution  || requesting.chats
-  const choosenChat = !loadingData && chatsToArray(chats, auth.uid, institution).filter(chat => chatId == chat.key)[0]
+  const loadingData = requesting.users  || requesting.chats || requesting.institution
+  const choosenChat = !loadingData && chatsToArray(chats, auth.uid, users).filter(chat => chatId == chat.key)[0]
 
   return loadingData?(<LoadingPage/>):(<ChatPage>
       <CssBaseline/>
       <Topbar 
-        username={choosenChat? choosenChat.institution:''}
-        logo={choosenChat? choosenChat.logo:''}
+        username={choosenChat? choosenChat.displayName:''}
+        logo={choosenChat? choosenChat.avatarUrl:''}
       />
       <ChatWindow 
         chat={choosenChat}
@@ -46,13 +46,13 @@ const Chat = ({chats, auth,firebase,requesting, match, institution}) => {
 }
 
 
-const chatsToArray = (chats, user, institution) => chats !== {}
-  ? Object.keys(chats).filter(key => chats[key].user == user).map(key => (
+const chatsToArray = (chats, user, users) => chats !== {} && users !== {}
+  ? Object.keys(chats).filter(key => chats[key].organizer == user).map(key => (
     {
       ...chats[key],
       key,
-      logo:institution[chats[key].organizer].logo,
-      institution:institution[chats[key].organizer].displayName,
+      displayName:users[chats[key].user]?users[chats[key].user].displayName: '',
+      avatarUrl:users[chats[key].user]?users[chats[key].user].avatarUrl: '',
     }
   ))
   :[]
@@ -60,6 +60,7 @@ const chatsToArray = (chats, user, institution) => chats !== {}
 const mapFirebaseStateToProps = state => ({
   chats: state.firebase.data.chats || {},
   auth: state.firebase.auth,
+  users: state.firebase.data.users || {},
   institution: state.firebase.data.institution || {},
   requesting: state.firebase.requesting,
 })
@@ -68,5 +69,5 @@ const mapFirebaseStateToProps = state => ({
 
 export default compose (
   connect(mapFirebaseStateToProps),
-  firebaseConnect(['chats', 'institution']),
+  firebaseConnect(['chats', 'users', 'institution']),
 )(Chat);

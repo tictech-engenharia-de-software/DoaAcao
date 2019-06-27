@@ -20,7 +20,7 @@ const NameContainer = styled.div`
 
 const TopBar = () => (
 	<AppBar>
-		<StyledLink to='/events/'>
+		<StyledLink to='/manage-events/'>
 			<IconButton>
 				<Backspace/>
 			</IconButton>

@@ -6,20 +6,24 @@ import Logo from '/Logo';
 
 const StyledAppBar = styled(AppBar)`
 display:flex;
-max-height:100px;
+height:100px;
 margin-bottom:24px;
+padding:4px 24px 4px 0px;
 `;
 
 const StyledToolbar = styled(Toolbar)`
 display:flex;
 align-items:center;
-justify-content:center;
+justify-content:space-between;
+height:100%;
 `;
 
-const Header = () => (
+const Header = ({children}) => (
 	<StyledAppBar position="sticky" color="default">
 		<StyledToolbar>
-			<Logo/>
+			{
+				children 
+			}
 		</StyledToolbar>
 	</StyledAppBar>
 );

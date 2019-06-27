@@ -24,7 +24,7 @@ const StyledLink = styled(Link)`
 const EventList = ({chatlist}) => (
 		<StyledList>
 			{chatlist.map( ({title, key, logo, institution}) => (
-				<StyledLink to={`/chat/${key}`} key={key}>
+				<StyledLink to={`/institution-chat/${key}`} key={key}>
 					<ListItem align-items="flex-start" button>
 						<ListItemAvatar>
 							<Avatar src={logo}/>

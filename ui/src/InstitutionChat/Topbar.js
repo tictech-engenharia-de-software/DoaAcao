@@ -32,7 +32,7 @@ const StyledToolbar = styled(Toolbar)`
 
 const TopBar = ({username, logo}) => (
 	<AppBar>
-		<StyledLink to='/chat'>
+		<StyledLink to='/institution-chat/'>
 		<IconButton>
 			<Backspace/>
 		</IconButton>
@@ -51,7 +51,7 @@ const TopBar = ({username, logo}) => (
 )
 
 TopBar.defaultProps = {
-	username:"Henrique",
+	username:"",
 	logo:""
 }
 

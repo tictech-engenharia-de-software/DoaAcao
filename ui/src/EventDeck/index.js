@@ -3,24 +3,33 @@ import images from "../resources/images/*.jpg";
 import EventCard from "/EventCard";
 import Swipeable from "react-swipy";
 import styled from "styled-components";
+import { withRouter } from "react-router";
 
 
-const EventDeck = ({events, institution}) => {
+const EventDeck = ({events, institution, createNewChat, history}) => {
   const [cards, setCards] = useState([]);
-  const remove =() => setCards(cards.slice(1, cards.length))
+  const remove = () => setCards(cards.slice(1, cards.length))
+  const likeEvent = direction =>{
+    if(direction === 'right') {
+      createNewChat(currentCard.key, currentCard.organizer, currentCard.name).then( ({key}) =>
+        history.replace(`/chat/${key}`)
+      )
+    }
+  }
 
   useEffect(() => {
     setCards(events)
   }, [events])
 
-  return cards.length>0?(
-    <Swipeable onAfterSwipe={remove}>
+  const currentCard = cards.length>0? cards[0]: false
+  return currentCard?(
+    <Swipeable onAfterSwipe={remove} onSwipe={likeEvent}>
       <EventCard
-        title = {cards[0].name} 
+        title = {currentCard.name} 
         limit={80}
-        logo={institution[cards[0].organizer].logo}
-        description = {cards[0].description}
-        image = {cards[0].image}
+        logo={institution[currentCard.organizer].logo}
+        description = {currentCard.description}
+        image = {currentCard.image}
       />
     </Swipeable>)
     :(<div> Nenhum evento aqui! </div>)
@@ -28,4 +37,4 @@ const EventDeck = ({events, institution}) => {
 
 
 
-export default (EventDeck)
+export default(withRouter(EventDeck))

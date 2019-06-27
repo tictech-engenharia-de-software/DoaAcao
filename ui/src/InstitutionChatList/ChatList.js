@@ -15,38 +15,37 @@ const ChatListPage = styled.div`
 	flex-direction:column;
 `
 
-const ChatList = ({auth, chatlist, institution, requesting}) => {
-  const loadingData = requesting.institution  || requesting.chats
+const ChatList = ({auth, chatlist, users, requesting}) => {
+  const loadingData = requesting.users  || requesting.chats
   return loadingData?(<LoadingPage/>)
     :(	
       <ChatListPage>
 	<TopBar/>
-	<EventList chatlist={chatsToArray(chatlist,auth.uid, institution)}/>
+	<EventList chatlist={chatsToArray(chatlist,auth.uid, users)}/>
       </ChatListPage>
     )
 }
 
-const chatsToArray = (chats, user, institution) => chats !== {}
-  ? Object.keys(chats).filter(key => chats[key].user == user).map(key => (
+const chatsToArray = (chats, user, users) => chats !== {} && users !== {}
+  ? Object.keys(chats).filter(key => chats[key].organizer == user).map(key => (
     {
       ...chats[key],
       key,
-      logo:institution[chats[key].organizer].logo,
-      institution:institution[chats[key].organizer].displayName,
+      institution:users[chats[key].user]?users[chats[key].user].displayName: '',
+      logo:users[chats[key].user]?users[chats[key].user].avatarUrl: '',
     }
   ))
   :[]
-
 const mapFirebaseStateToProps = state => ({
   chatlist: state.firebase.data.chats || [],
   auth: state.firebase.auth,
-  institution: state.firebase.data.institution || {},
   requesting: state.firebase.requesting,
+  users: state.firebase.data.users || {},
 }) 
 
 
 export default compose (
 	connect(mapFirebaseStateToProps),
-	firebaseConnect(['chats', 'institution']),
+	firebaseConnect(['chats', 'users']),
 	UserIsAuthenticated,
 )(ChatList);
