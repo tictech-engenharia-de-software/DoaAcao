@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import images from "../resources/images/*.jpg";
 import EventCard from "/EventCard";
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
