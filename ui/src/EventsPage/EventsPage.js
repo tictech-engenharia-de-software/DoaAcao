@@ -37,9 +37,10 @@ const ChatButton = () =>(
 
 const EventPage = ({events, institution, requesting, firebase, auth}) => {
   const loadingData = requesting.events || requesting.institution 
-  const createNewChat = (event, organizer, title) =>  firebase.push(
-    'chats', {  event, organizer, title, user:auth.uid,  messages:[]}
-  )
+  const createNewChat = (event, organizer, title) =>  {
+    firebase.uniqueSet(`chats/${event}${organizer}${auth.uid}`, {  event, organizer, title, user:auth.uid,  messages:[]})
+    return `${event}${organizer}${auth.uid}`
+  }
       
 	return loadingData?(<LoadingPage/>)
 		:(<PageContainer>

@@ -7,7 +7,7 @@ import { firebaseConnect } from 'react-redux-firebase';
 
 import LoadingPage from '/LoadingPage';
 import Topbar from './Topbar';
-import ChatWindow from './ChatWindow';
+import ChatWindow from '/ChatWindow';
 import InputText from './InputText';
 
 
@@ -36,6 +36,7 @@ const Chat = ({chats, auth,firebase,requesting, match, institution}) => {
       <Topbar 
         username={choosenChat? choosenChat.institution:''}
         logo={choosenChat? choosenChat.logo:''}
+        title={choosenChat? choosenChat.title:''}
       />
       <ChatWindow 
         chat={choosenChat}

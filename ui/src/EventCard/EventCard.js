@@ -24,10 +24,10 @@ const EventCard = ({title, logo, description, image}) => (
       avatar={<Avatar src={logo}/>}
       title={title}
     />
-    <CardContent>
       <StyledMedia
 	image={image}
       />
+    <CardContent>
       <Typography variant="body2" color="textSecondary">
 	{description}
       </Typography>

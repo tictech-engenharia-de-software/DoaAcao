@@ -72,10 +72,10 @@ const ChatWindow = ({chat, user}) => (
 						)
 					)
 				return (
-					<React.Fragment>
+					<div key={timestamp}>
 						<Message />
 						<Time />
-					</React.Fragment>
+					</div>
 				)
 				}):<div/>
 

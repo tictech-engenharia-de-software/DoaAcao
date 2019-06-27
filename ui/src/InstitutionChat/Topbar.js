@@ -30,8 +30,8 @@ const StyledToolbar = styled(Toolbar)`
 	background-color:pink;
 `
 
-const TopBar = ({username, logo}) => (
-	<AppBar>
+const TopBar = ({username, logo, title}) => (
+	<AppBar title={title}>
 		<StyledLink to='/institution-chat/'>
 		<IconButton>
 			<Backspace/>

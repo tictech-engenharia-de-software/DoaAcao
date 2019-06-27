@@ -39,6 +39,7 @@ const CreateEventDialog = ({handleClose, open, firebase, auth}) => {
 			      fullWidth
 			/>
 			<TextField
+			      multiline
 			      margin="dense"
 			      onChange={changeHandler(setDescription)}
 			      value={description}

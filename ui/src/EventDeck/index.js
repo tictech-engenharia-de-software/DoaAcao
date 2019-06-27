@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import images from "../resources/images/*.jpg";
 import EventCard from "/EventCard";
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
 import Swipeable from "react-swipy";
 import styled from "styled-components";
 import { withRouter } from "react-router";
@@ -11,9 +13,8 @@ const EventDeck = ({events, institution, createNewChat, history}) => {
   const remove = () => setCards(cards.slice(1, cards.length))
   const likeEvent = direction =>{
     if(direction === 'right') {
-      createNewChat(currentCard.key, currentCard.organizer, currentCard.name).then( ({key}) =>
-        history.replace(`/chat/${key}`)
-      )
+      const key =  createNewChat(currentCard.key, currentCard.organizer, currentCard.name)
+      history.replace(`/chat/${key}`)
     }
   }
 
@@ -32,7 +33,7 @@ const EventDeck = ({events, institution, createNewChat, history}) => {
         image = {currentCard.image}
       />
     </Swipeable>)
-    :(<div> Nenhum evento aqui! </div>)
+    :(<Container> <Typography>Não há mais eventos. Volte mais tarde!</Typography>  </Container>)
 }
 
 

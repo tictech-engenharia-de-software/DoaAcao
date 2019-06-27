@@ -76,7 +76,7 @@ class InstitutionLogin extends React.Component {
             fullWidth
             variant="contained"
             color="primary"
-            onClick={this.userLogin}
+            onClick={() => this.userLogin(this.state)}
           >
             Sign In
           </Button>

@@ -36,6 +36,7 @@ const Chat = ({chats, auth,firebase,requesting, match, users, institution}) => {
       <Topbar 
         username={choosenChat? choosenChat.displayName:''}
         logo={choosenChat? choosenChat.avatarUrl:''}
+        title={choosenChat? choosenChat.title:''}
       />
       <ChatWindow 
         chat={choosenChat}
