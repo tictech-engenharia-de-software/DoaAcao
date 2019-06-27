@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Typography from '@material-ui/core/Typography';
 import Chip from '@material-ui/core/Chip';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { firebaseConnect } from 'react-redux-firebase';
+
 
 const ChatMessages = styled.div`
 	display:flex;
@@ -41,6 +45,7 @@ const ChatWindow = ({messages, user}) => (
 	</ChatMessages>
 	
 )
+
 
 
 ChatWindow.defaultProps = {
