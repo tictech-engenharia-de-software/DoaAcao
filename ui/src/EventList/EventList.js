@@ -3,27 +3,24 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
-const EventList = ({events, organizer}) => (
+const EventList = ({events}) => (
 	<List>
 		{
-			Object.keys(events).filter(key => events[key].organizer == organizer)
-				.map(
-				(eventKey) => (
-					<ListItem 
-						key={eventKey}
-					>
+			events.length>0?events.map(
+				(event) => (
+					<ListItem  key={event.key}>
 						<ListItemText 
-							primary={events[eventKey].name} 
-							secondary={events[eventKey].description} 
+							primary={event.name} 
+							secondary={event.description} 
 						/>
 					</ListItem>
-				))
+				)):<p> Adicione seu primeiro evento  </p>
 		}
 	</List>
 )
 
 EventList.defaultProps = {
-	'events':{}
+	'events':[]
 }
 
 export default EventList;

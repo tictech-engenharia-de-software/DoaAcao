@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -6,6 +6,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import AddIcon from '@material-ui/icons/Add';
+import ImageUploader from '/ImageUploader';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withFirebase } from 'react-redux-firebase'
@@ -13,10 +14,11 @@ import { withFirebase } from 'react-redux-firebase'
 const CreateEventDialog = ({handleClose, open, firebase, auth}) => {
       const [name, setName] = React.useState('');
       const [description, setDescription] = React.useState('');
+	const [imageURL, setImageURL] =  useState("")
 
       const changeHandler = (stateHandler) => event => stateHandler(event.target.value)
       const createNewEvent = () => {
-	    firebase.push('events', {  name, description, organizer:auth.uid  })
+	    firebase.push('events', {  name, description, organizer:auth.uid, image:imageURL})
 	    setDescription('')
 	    setName('')
 	    handleClose()
@@ -45,6 +47,7 @@ const CreateEventDialog = ({handleClose, open, firebase, auth}) => {
 			      type="email"
 			      fullWidth
 			/>
+			<ImageUploader imageURL={imageURL} setImageURL={setImageURL}/>
 		  </DialogContent>
 		  <DialogActions>
 			<Button onClick={handleClose} color="primary">

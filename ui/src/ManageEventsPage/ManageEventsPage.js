@@ -26,7 +26,7 @@ overflow: hidden
 `;
 
 
-const ManageEventsPage = ({events, auth}) =>{
+const ManageEventsPage = ({events, auth, requesting}) =>{
 	const [open, setOpen] = React.useState(false);
 	const [name, setName] = React.useState('');
 	const [description, setDescription] = React.useState('');
@@ -34,8 +34,7 @@ const ManageEventsPage = ({events, auth}) =>{
 		<PageContainer>
 			<AppBar/>
 			<EventList 
-			  events={events}
-			  organizer={auth.uid}
+			  events={eventsToArray(events, auth.uid)}
 			/>
 			<AbsoluteFab onClick={() => setOpen(true)}>
 				<AddIcon/>
@@ -46,9 +45,13 @@ const ManageEventsPage = ({events, auth}) =>{
 	)
 }
 
+const eventsToArray = (events, organizer) => events !== {}
+  ? Object.keys(events).filter(key => events[key].organizer == organizer).map(key => ({...events[key],key}))
+  :[]
+
 
 const mapFirebaseStateToProps = state => ({
-  events: state.firebase.data.events,
+  events: state.firebase.data.events || {},
   auth: state.firebase.auth,
 }) 
 

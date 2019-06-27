@@ -7,6 +7,7 @@ import Card from '@material-ui/core/Card';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 
+
 const StyledCard = styled(Card)`
 position: relative;
 min-width: 150px;
@@ -20,7 +21,7 @@ height:240px;
 const EventCard = ({title, logo, description, image}) => (
   <StyledCard>
     <CardHeader
-      avatar={<Avatar src={logo} />}
+      avatar={<Avatar src={logo}/>}
       title={title}
     />
     <CardContent>
