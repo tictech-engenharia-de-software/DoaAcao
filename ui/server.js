@@ -1,8 +1,12 @@
 const express = require('express');
 const favicon = require('express-favicon');
+const dotenv = require('dotenv');
 const path = require('path');
 const port = process.env.PORT || 8080;
+
+const env = dotenv.config()
 const app = express();
+
 app.use(favicon(__dirname + '/src/resources/images/favicon.png'));
 app.use(express.static(__dirname));
 app.use(express.static(path.join(__dirname, 'dist')));

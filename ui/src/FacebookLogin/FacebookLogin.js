@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebookF} from '@fortawesome/free-brands-svg-icons'
+import { faFacebookF } from '@fortawesome/free-brands-svg-icons'
 import { firebaseConnect } from 'react-redux-firebase';
 import Button from '@material-ui/core/Button';
 
